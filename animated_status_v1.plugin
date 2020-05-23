@@ -1,10 +1,12 @@
-//META{"name":"AnimatedStatus"}*//
+//META{"name":"Анимированый Статус"}*//
 /**
- * @authorLink https://www.youtube.com/channel/UCx4_tmvBYW-mZXZpX6mkzTA?view_as=subscriber
+ * @name Анимированый Статус
+ * @version 1
+ * @by Wade35
  */
 
 class AnimatedStatus {
-	/* BD functions */
+	
 	getName () {
 		return "Анимированый Статус";
 	}
@@ -29,7 +31,7 @@ class AnimatedStatus {
 		return BdApi.getData(this.getName(), key);
 	}
 
-	/* Code related to Animations */
+	/* Код, связанный с анимацией */
 	load () {
 		this.animation = this.getData("animation");
 		this.timeout = this.getData("timeout");
@@ -53,7 +55,7 @@ class AnimatedStatus {
 		this.loop = setTimeout(() => { this.Status_Animate(index + 1); }, this.timeout);
 	}
 
-	/* Settings related functions */
+	/* Настройки связанных функций */
 	strToAnimation (str) {
 		let lines = str.split("\n");
 		let out = [];
@@ -79,7 +81,7 @@ class AnimatedStatus {
 		let settings = document.createElement("div");
 		settings.style.padding = "10px";
 
-		// Auth token
+		// Токен входа
 		settings.appendChild(GUI.newLabel("Ваш токен (https://discordhelp.net/discord-token)"));
 		let token = GUI.newInput();
 		token.value = this.getData("token");
@@ -87,15 +89,15 @@ class AnimatedStatus {
 
 		settings.appendChild(GUI.newDivider());
 
-		// timeout
-		settings.appendChild(GUI.newLabel("Время смены статуса(сек)(Не меньше 3000!!!)"));
+		// Время
+		settings.appendChild(GUI.newLabel("Время смены статуса(Не меньше 3000!!!)"));
 		let timeout = GUI.newInput();
 		timeout.value = this.getData("timeout");
 		settings.appendChild(timeout);
 
 		settings.appendChild(GUI.newDivider());
 
-		// Animation
+		// Анимация
 		settings.appendChild(GUI.newLabel('Анимация ("Текст")'));
 		let animation = GUI.newTextarea();
 		animation.style.fontFamily = "SourceCodePro,Consolas,Liberation Mono,Menlo,Courier,monospace";
@@ -103,17 +105,17 @@ class AnimatedStatus {
 		animation.value = this.animationToStr(this.getData("animation"));
 		settings.appendChild(animation);
 
-		// Save Button
+		// Кнопка сохранения
 		settings.appendChild(GUI.newDivider());
 		let save = GUI.newButton("Save");
 		save.onclick = () => {
-			// Set Auth token
+			// Вставить токен
 			this.setData("token", token.value);
 
-			// Set timeout
+			// Установить время
 			this.setData("timeout", timeout.value);
 
-			// Set Animation
+			// Установить анимацию
 			this.setData("animation", this.strToAnimation(animation.value));
 
 			this.stop();
@@ -122,12 +124,12 @@ class AnimatedStatus {
 		};
 		settings.appendChild(save);
 
-		// End
+		// Конец
 		return settings;
 	}
 }
 
-/* Status API */
+/* Статус API */
 const Status = {
 	authToken: "",
 
@@ -148,7 +150,7 @@ const Status = {
 	}
 };
 
-/* GUI Wrapper */
+/* GUI обертка */
 const GUI = {
 	newInput: () => {
 		let input = document.createElement("input");
