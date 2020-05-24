@@ -1,10 +1,4 @@
-//META{"name":"Анимированый Статус"}*//
-/**
- * @name Анимированый Статус
- * @version 1
- * @by Wade35
- */
-
+//META{"name":"AnimatedStatus"}*//
 class AnimatedStatus {
 	
 	getName () {
